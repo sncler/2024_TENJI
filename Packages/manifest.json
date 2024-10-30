@@ -1,15 +1,21 @@
 {
   "dependencies": {
+    "com.hecomi.ulipsync": "3.1.4",
     "com.unity.collab-proxy": "1.15.17",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.14",
     "com.unity.ide.visualstudio": "2.0.15",
     "com.unity.ide.vscode": "1.2.5",
+    "com.unity.postprocessing": "3.2.2",
+    "com.unity.probuilder": "5.0.7",
+    "com.unity.recorder": "3.0.4",
+    "com.unity.shadergraph": "12.1.7",
     "com.unity.test-framework": "1.1.31",
     "com.unity.textmeshpro": "3.0.6",
-    "com.unity.timeline": "1.6.4",
+    "com.unity.timeline": "1.8.7",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.7.8",
+    "mu.cluster.cluster-creator-kit": "2.26.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -41,5 +47,21 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "Cluster",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "mu.cluster"
+      ]
+    },
+    {
+      "name": "hecomi",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "com.hecomi"
+      ]
+    }
+  ]
 }
