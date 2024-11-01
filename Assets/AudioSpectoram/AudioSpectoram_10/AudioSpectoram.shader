@@ -6,6 +6,7 @@ Shader "Custom/AudioSpectoram"
         _RenderTexture1 ("Render Texture 1", 2D) = "white" {}
         _RenderTexture2 ("Render Texture 2", 2D) = "black" {}
         _Speed ("Lerp Speed", float) = 1.0
+        _Indence ("Indence ST", float) = 1.0
     }
     SubShader
     {
@@ -35,6 +36,7 @@ Shader "Custom/AudioSpectoram"
             sampler2D _RenderTexture1;
             sampler2D _RenderTexture2;
             float _Speed;
+            float _Indence;
 
             v2f vert(appdata v)
             {
@@ -55,7 +57,7 @@ Shader "Custom/AudioSpectoram"
                 fixed4 color2 = tex2D(_RenderTexture2, i.uv);
 
                 // 2つの色をLerpで補間
-                fixed4 lerpedColor = lerp(color1, color2, lerpFactor);
+                fixed4 lerpedColor = lerp(color1, color2, lerpFactor) * _Indence;
 
                 return lerpedColor;
             }
