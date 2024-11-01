@@ -65,19 +65,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex1:
-        m_Texture: {fileID: 2800000, guid: 3042b019b052942a1baf7aa49d7ca6bb, type: 3}
+        m_Texture: {fileID: 2800000, guid: d5b5bd997e6664f4d82f2d9d50a12884, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex2:
-        m_Texture: {fileID: 2800000, guid: 8dd94dc3fdb611144a3928ccba12a527, type: 3}
+        m_Texture: {fileID: 2800000, guid: 21e4fbc68c8405f41a478e59973323ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex3:
-        m_Texture: {fileID: 2800000, guid: 58f9139d7ebe8c7428c2cb12704377e6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 295b7ab3098798545952fe412a4bc148, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex4:
-        m_Texture: {fileID: 2800000, guid: 9d93154b969adba4bb0cc59a91162b9e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 73687d69b0dfd944ca3e09bb02626cb0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex5:
+        m_Texture: {fileID: 2800000, guid: faa0ae17b65274549b8b00fce2e17124, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -104,6 +108,7 @@ Material:
     - _UV_Y: 1600
     - _ZWrite: 1
     m_Colors:
+    - _BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlassColor: {r: 1, g: 1, b: 1, a: 1}

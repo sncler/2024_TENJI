@@ -14,6 +14,7 @@ Shader "Effect/slidshow"
         _Tex2 ("Texture 2", 2D) = "white" {}
         _Tex3 ("Texture 3", 2D) = "white" {}
         _Tex4 ("Texture 4", 2D) = "white" {}
+        _Tex5 ("Texture 5", 2D) = "white" {}
         _TimeBetweenSlides ("Time Between Slides", Float) = 2.0
         _FadeDuration ("Fade Duration", Float) = 0.5
     }
@@ -36,6 +37,7 @@ Shader "Effect/slidshow"
             sampler2D _Tex2;
             sampler2D _Tex3;
             sampler2D _Tex4;
+            sampler2D _Tex5;
 
             float4 _GlassColor;
             float4 _MainTex_ST;
@@ -66,13 +68,14 @@ Shader "Effect/slidshow"
             fixed4 frag(v2f i) : SV_Target
             {
                 float time = _Time.y; // Unity provides a built-in _Time variable
-                float totalTime = (_TimeBetweenSlides + _FadeDuration * 2.0) * 4.0;
-                float slideTime = fmod(time, totalTime) / (totalTime / 4.0);
+                float totalTime = (_TimeBetweenSlides + _FadeDuration * 2.0) * 5.0;
+                float slideTime = fmod(time, totalTime) / (totalTime / 5.0);
 
                 fixed4 col1 = tex2D(_Tex1, i.uv);
                 fixed4 col2 = tex2D(_Tex2, i.uv);
                 fixed4 col3 = tex2D(_Tex3, i.uv);
                 fixed4 col4 = tex2D(_Tex4, i.uv);
+                fixed4 col5 = tex2D(_Tex5, i.uv);
 
                 fixed4 currentTex;
                 fixed4 nextTex;
@@ -82,25 +85,31 @@ Shader "Effect/slidshow"
                 {
                     currentTex = col1;
                     nextTex = col2;
-                    alpha = saturate((slideTime * 4.0 - _TimeBetweenSlides) / _FadeDuration);
+                    alpha = saturate((slideTime * 5.0 - _TimeBetweenSlides) / _FadeDuration);
                 }
                 else if (slideTime < 2.0)
                 {
                     currentTex = col2;
                     nextTex = col3;
-                    alpha = saturate((slideTime - 1.0) * 4.0 / _FadeDuration);
+                    alpha = saturate((slideTime - 1.0) * 5.0 / _FadeDuration);
                 }
                 else if (slideTime < 3.0)
                 {
                     currentTex = col3;
                     nextTex = col4;
-                    alpha = saturate((slideTime - 2.0) * 4.0 / _FadeDuration);
+                    alpha = saturate((slideTime - 2.0) * 5.0 / _FadeDuration);
+                }
+                else if (slideTime < 4.0)
+                {
+                    currentTex = col4;
+                    nextTex = col5;
+                    alpha = saturate((slideTime - 3.0) * 5.0 / _FadeDuration);
                 }
                 else
                 {
-                    currentTex = col4;
+                    currentTex = col5;
                     nextTex = col1;
-                    alpha = saturate((slideTime - 3.0) * 4.0 / _FadeDuration);
+                    alpha = saturate((slideTime - 4.0) * 5.0 / _FadeDuration);
                 }
 
                 fixed4 baseColor = tex2D(_MainTex, i.uv);
