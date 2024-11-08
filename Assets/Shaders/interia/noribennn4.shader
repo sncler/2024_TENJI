@@ -9,15 +9,16 @@ Shader "Custom/noribennn4"
         _RightWallTex("Right Wall Texture", 2D) = "white" {}
         _BackWallTex("Back Wall Texture", 2D) = "white" {}
         _FrontTex("Front Wall Texture", 2D) = "white" {}
-        _MidTex("Middle Texture", 2D) = "white" {} // 新しいテクスチャプロパティ
+        _MidTex("Middle Texture", 2D) = "white" {}
         _DistanceBetweenFloors("Distance Between Floors", Float) = 0.25
         _DistanceBetweenWalls("Distance Between Walls", Float) = 0.25
         _FloorTexSizeAndOffset("Floor Texture Size And Offset", Vector) = (0.5, 0.5, 0.0, 0.0)
         _CeilTexSizeAndOffset("Ceil Texture Size And Offset", Vector) = (0.5, 0.5, 0.0, 0.5)
         _WallTexSizeAndOffset("Wall Texture Size And Offset", Vector) = (0.5, 0.5, 0.5, 0.0)
-        _MidTexSizeAndOffset("Mid Texture Size And Offset", Vector) = (0.5, 0.5, 0.0, 0.0) // 中間平面のテクスチャサイズとオフセット
-        _MidTexHeight("Middle Texture Height", Float) = 0.125 // 中間平面の高さを設定するプロパティ
+        _MidTexSizeAndOffset("Mid Texture Size And Offset", Vector) = (0.5, 0.5, 0.0, 0.0)
+        _MidTexHeight("Middle Texture Height", Float) = 0.125
         _MidEdge("Middle Texture Edge", Float) = 0.01
+        _Brightness("Brightness", Float) = 1.0 // 明るさ調整プロパティを追加
     }
 
     CGINCLUDE
@@ -31,8 +32,11 @@ Shader "Custom/noribennn4"
     sampler2D _RightWallTex;
     sampler2D _BackWallTex;
     sampler2D _FrontTex;
-    sampler2D _MidTex; // 新しいテクスチャサンプラー
+    sampler2D _MidTex;
 
+    float _Brightness; // 明るさの変数
+
+    // 残りのシェーダーコードは省略
     struct v2f
     {
         float4 pos : SV_POSITION;
@@ -126,12 +130,13 @@ Shader "Custom/noribennn4"
     half4 frag(v2f i) : SV_TARGET
     {
         float3 rayDir = normalize(i.objectViewDir);
-        float3 rayPos = ApplySmallOffset(i.objectPos, rayDir); // 微小なオフセットを適用
+        float3 rayPos = ApplySmallOffset(i.objectPos, rayDir);
         float3 planePos = float3(0, 0, 0);
         float3 planeNormal = float3(0, 0, 0);
         float intersect = INTERSECT_INF;
-        float4 color = float4(0,0,0,1); // RGBAに変更
+        float4 color = float4(0, 0, 0, 1);
 
+        // 残りのコード...
         const float3 UpVec = float3(0, 1, 0);
         const float3 RightVec = float3(1, 0, 0);
         const float3 FrontVec = float3(0, 0, 1);
@@ -225,18 +230,20 @@ Shader "Custom/noribennn4"
                 }
             }
         }
+        // 最後に明るさを適用
+        color.rgb *= _Brightness;
 
-        return half4(color.rgb, color.a); // アルファを保持して出力
+        return half4(color.rgb, color.a);
     }
     ENDCG
 
     SubShader 
     {
-        Tags { "RenderType" = "Transparent" } // 透過をサポート
+        Tags { "RenderType" = "Transparent" }
         LOD 200
         Cull Back
         ZWrite On
-        Blend SrcAlpha OneMinusSrcAlpha // アルファブレンディングを有効にする
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
