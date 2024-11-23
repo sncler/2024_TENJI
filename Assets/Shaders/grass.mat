@@ -70,7 +70,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blur: 10
+    - _Blur: 2
     - _BlurMin: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -87,7 +87,7 @@ Material:
     - _MinBlur: 1
     - _Mode: 0
     - _NearDistance: 5
-    - _NormalStrength: 211.3
+    - _NormalStrength: 30
     - _OcclusionStrength: 0.1
     - _Parallax: 0.02
     - _RefractionStrength: 0.001
